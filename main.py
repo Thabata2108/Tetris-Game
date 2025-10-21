@@ -5,14 +5,23 @@ from game import jogar
 pygame.init()
 pygame.display.set_caption("Tetris – FACULTY Edition")
 
-# Caminhos
-ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
+# === Caminhos ===
+BASE_DIR = os.path.dirname(__file__)
+ASSETS_DIR = os.path.join(BASE_DIR, "assets")
 BG_DIR = os.path.join(ASSETS_DIR, "backgrounds")
 
-# Inicializa tela
+# === Inicializa tela ===
 tela = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
 
-# Seleciona background aleatório
+# === Música de fundo ===
+pygame.mixer.init()
+MUSIC_PATH = os.path.join(ASSETS_DIR, "music.mp3")  # coloque sua música aqui
+if os.path.exists(MUSIC_PATH):
+    pygame.mixer.music.load(MUSIC_PATH)
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_volume(0.5)
+
+# === Funções ===
 def carregar_background():
     arquivos = [f for f in os.listdir(BG_DIR) if f.endswith((".png", ".jpg"))]
     if not arquivos:
@@ -20,7 +29,6 @@ def carregar_background():
     img = pygame.image.load(os.path.join(BG_DIR, random.choice(arquivos)))
     return pygame.transform.scale(img, (LARGURA_TELA, ALTURA_TELA))
 
-# Desenhar botão genérico
 def desenhar_botao(texto, y):
     fonte_btn = pygame.font.SysFont("tahoma", 18, bold=True)
     largura, altura = 200, 45
@@ -44,8 +52,8 @@ def desenhar_instrucoes():
     painel.blit(texto3, (20, 60))
     tela.blit(painel, (LARGURA_TELA//2 - 180, ALTURA_TELA - 100))
 
-# Menu principal
 def menu():
+    pygame.mixer.music.play(-1)  # garante que reinicie no menu
     bg_img = carregar_background()
     dificuldade = "Médio"
     clock = pygame.time.Clock()

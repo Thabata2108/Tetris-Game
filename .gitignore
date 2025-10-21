@@ -1,0 +1,9 @@
+# Ignorar ambiente virtual
+venv/
+
+# Ignorar arquivos compilados Python
+__pycache__/
+*.pyc
+
+# Ignorar pasta de PSD grandes
+assets/PSD/

@@ -7,6 +7,7 @@ OFFSET_Y = 117  # distância em pixels do topo da tela
 
 def tela_game_over(tela, bg_img, pontuacao, velocidade_queda):
     """Exibe a tela de Game Over com opções."""
+    pygame.mixer.music.pause()
     clock = pygame.time.Clock()
     fonte_titulo = pygame.font.SysFont("tahoma", 48, bold=True)
     fonte_pontuacao = pygame.font.SysFont("tahoma", 24, bold=True)
@@ -56,8 +57,10 @@ def tela_game_over(tela, bg_img, pontuacao, velocidade_queda):
                 sys.exit()
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 if botao_reiniciar.collidepoint(evento.pos):
+                    pygame.mixer.music.unpause() 
                     return "reiniciar"
                 elif botao_menu.collidepoint(evento.pos):
+                    pygame.mixer.music.unpause()
                     return "menu"
 
         pygame.display.update()
