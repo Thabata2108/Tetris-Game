@@ -2,7 +2,7 @@ import pygame, sys, random
 from settings import *
 from tetris import *
 
-OFFSET_Y = 117  # distância em pixels do topo da tela
+OFFSET_Y = 117  
 
 
 def tela_game_over(tela, bg_img, pontuacao, velocidade_queda):
@@ -16,7 +16,6 @@ def tela_game_over(tela, bg_img, pontuacao, velocidade_queda):
     while True:
         tela.blit(bg_img, (0, 0))
 
-        # Texto "GAME OVER"
         titulo = fonte_titulo.render("GAME OVER", True, BRANCO)
         tela.blit(titulo, (LARGURA_TELA // 2 - titulo.get_width() // 2, 150))
 
@@ -85,11 +84,11 @@ def jogar(tela, bg_img, velocidade_queda):
         espacamento_topo = 20
         espacamento_lateral = 20
 
-        # Texto de pontuação (lado esquerdo)
+        # Texto de pontuação 
         texto_pont = FONTE.render(f"Pontos: {pontuacao}", True, BRANCO)
         tela.blit(texto_pont, (espacamento_lateral, espacamento_topo))
 
-        # Botão voltar (lado direito)
+        # Botão voltar 
         largura_botao = 110
         altura_botao = 35
         voltar_rect = pygame.Rect(

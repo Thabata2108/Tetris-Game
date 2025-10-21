@@ -5,23 +5,23 @@ from game import jogar
 pygame.init()
 pygame.display.set_caption("Tetris – FACULTY Edition")
 
-# === Caminhos ===
+# Caminhos 
 BASE_DIR = os.path.dirname(__file__)
 ASSETS_DIR = os.path.join(BASE_DIR, "assets")
 BG_DIR = os.path.join(ASSETS_DIR, "backgrounds")
 
-# === Inicializa tela ===
+# Inicializa tela 
 tela = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
 
-# === Música de fundo ===
+# Música de fundo
 pygame.mixer.init()
-MUSIC_PATH = os.path.join(ASSETS_DIR, "music.mp3")  # coloque sua música aqui
+MUSIC_PATH = os.path.join(ASSETS_DIR, "music.mp3")
 if os.path.exists(MUSIC_PATH):
     pygame.mixer.music.load(MUSIC_PATH)
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_volume(0.5)
 
-# === Funções ===
+# Funções
 def carregar_background():
     arquivos = [f for f in os.listdir(BG_DIR) if f.endswith((".png", ".jpg"))]
     if not arquivos:
@@ -53,7 +53,7 @@ def desenhar_instrucoes():
     tela.blit(painel, (LARGURA_TELA//2 - 180, ALTURA_TELA - 100))
 
 def menu():
-    pygame.mixer.music.play(-1)  # garante que reinicie no menu
+    pygame.mixer.music.play(-1) 
     bg_img = carregar_background()
     dificuldade = "Médio"
     clock = pygame.time.Clock()
